@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="discord-logo-icon-app-transparent-background-premium-social-media-design-for-digital-download-free-png.jpeg"
+    />
+    <title>Discord Bot bug report</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <div class="card">
+        <div class="left">
+          <img class="logo" src="" />
+          <h1>Report a Bug</h1>
+          <p>
+            Found something broken or acting weird? Help us improve the Discord
+            bot by reporting bugs with clear details.
+          </p>
+
+          <div class="info">
+            🛠 Please include exact steps, command names, and screenshots if
+            possible. Duplicate or vague reports may be ignored.
+          </div>
+        </div>
+
+        <div class="right">
+          <form id="bugForm">
+            <label>Discord Username</label>
+            <input type="text" placeholder="username#0000" required />
+
+            <label>Bug Category</label>
+            <select required>
+              <option value="">Select a category</option>
+              <option>Command issue</option>
+              <option>Bot crashes / offline</option>
+              <option>Permissions</option>
+              <option>Embeds / UI</option>
+              <option>Other</option>
+            </select>
+
+            <label>Bug Description</label>
+            <textarea
+              placeholder="What exactly went wrong?"
+              required
+            ></textarea>
+
+            <label>Steps to Reproduce</label>
+            <textarea
+              placeholder="1. Run /command
+2. Bot errors
+3. Happens every time"
+              required
+            ></textarea>
+
+            <button type="submit">Submit Bug Report</button>
+          </form>
+        </div>
+      </div>
+
+      <footer>© 2026 Akchansh gairola • Bug Reporting Portal</footer>
+    </div>
+    <script>
+      document
+        .getElementById("bugForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          window.location.href = "reported.html";
+        });
+    </script>
+  </body>
+</html>
