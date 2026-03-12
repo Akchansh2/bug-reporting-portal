@@ -1,0 +1,55 @@
+  
+    const form = document.getElementById('bugForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const successScreen = document.getElementById('successScreen');
+
+    function validate() {
+      let ok = true;
+      [['username','username-error', v => v.trim().length > 0],
+       ['category','category-error', v => v !== ''],
+       ['description','description-error', v => v.trim().length >= 20]
+      ].forEach(([id, errId, test]) => {
+        const el = document.getElementById(id);
+        const err = document.getElementById(errId);
+        if (!test(el.value)) { el.classList.add('error'); err.classList.add('show'); ok = false; }
+        else { el.classList.remove('error'); err.classList.remove('show'); }
+      });
+      return ok;
+    }
+
+    ['username','category','description'].forEach(id => {
+      document.getElementById(id).addEventListener('input', () => {
+        document.getElementById(id).classList.remove('error');
+        document.getElementById(id+'-error').classList.remove('show');
+      });
+    });
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      if (!validate()) return;
+      submitBtn.classList.add('loading');
+      setTimeout(() => {
+        const user = document.getElementById('username').value.trim();
+        const cat  = document.getElementById('category').value;
+        const pri  = document.querySelector('input[name="priority"]:checked').value;
+        const now  = new Date();
+        const time = now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}) +
+                     ' · ' + now.toLocaleDateString([],{month:'short',day:'numeric'});
+        document.getElementById('s-user').textContent = user;
+        document.getElementById('s-cat').textContent  = cat;
+        document.getElementById('s-time').textContent = time;
+        const pClass = pri === 'Medium' ? 'med' : pri.toLowerCase();
+        const dot = pClass==='low'?'🟢':pClass==='med'?'🟡':'🔴';
+        document.getElementById('s-pri').innerHTML = `<span class="p-tag ${pClass}">${dot} ${pri}</span>`;
+        submitBtn.classList.remove('loading');
+        form.style.display = 'none';
+        successScreen.classList.add('show');
+      }, 1400);
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      form.reset(); form.style.display = 'block';
+      successScreen.classList.remove('show');
+      document.getElementById('p-med').checked = true;
+    });
+  
