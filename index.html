@@ -1,76 +1,111 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="icon"
-      type="image/png"
-      href="discord-logo-icon-app-transparent-background-premium-social-media-design-for-digital-download-free-png.jpeg"
-    />
-    <title>Discord Bot bug report</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="page">
-      <div class="card">
-        <div class="left">
-          <img class="logo" src="" />
-          <h1>Report a Bug</h1>
-          <p>
-            Found something broken or acting weird? Help us improve the Discord
-            bot by reporting bugs with clear details.
-          </p>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bug Report — Discord Bot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
 
-          <div class="info">
-            🛠 Please include exact steps, command names, and screenshots if
-            possible. Duplicate or vague reports may be ignored.
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <div class="header">
+    <div class="discord-badge">
+      <svg viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg">
+        <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+      </svg>
+      Bug Reports
+    </div>
+    <h1>Report a <span>Bug</span></h1>
+    <p>Something not working right? Let us know and we'll fix it.</p>
+  </div>
+
+  <div class="card">
+    <form id="bugForm" novalidate>
+
+      <div class="info-bar">
+        <svg viewBox="0 0 24 24"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-.696-7.333h1.392V12H11.304v2.667zM11.304 10h1.392V8.667h-1.392V10z"/></svg>
+        Include exact steps, command names, and screenshots if possible. Vague reports may be skipped.
+      </div>
+
+      <div class="form-group">
+        <label for="username">Discord Username <span class="req">*</span></label>
+        <input type="text" id="username" placeholder="username or user#0000" autocomplete="off"/>
+        <div class="error-msg" id="username-error">Please enter your Discord username.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Bug Category <span class="req">*</span></label>
+        <select id="category">
+          <option value="">Select a category</option>
+          <option>Command Issue</option>
+          <option>Bot Crashes / Offline</option>
+          <option>Permissions</option>
+          <option>Embeds / UI</option>
+          <option>Other</option>
+        </select>
+        <div class="error-msg" id="category-error">Please select a category.</div>
+      </div>
+
+      <div class="form-group">
+        <label>Priority Level <span class="req">*</span></label>
+        <div class="priority-options">
+          <div class="priority-option low">
+            <input type="radio" name="priority" id="p-low" value="Low"/>
+            <label for="p-low"><span class="p-icon">🟢</span>Low</label>
           </div>
-        </div>
-
-        <div class="right">
-          <form id="bugForm">
-            <label>Discord Username</label>
-            <input type="text" placeholder="username#0000" required />
-
-            <label>Bug Category</label>
-            <select required>
-              <option value="">Select a category</option>
-              <option>Command issue</option>
-              <option>Bot crashes / offline</option>
-              <option>Permissions</option>
-              <option>Embeds / UI</option>
-              <option>Other</option>
-            </select>
-
-            <label>Bug Description</label>
-            <textarea
-              placeholder="What exactly went wrong?"
-              required
-            ></textarea>
-
-            <label>Steps to Reproduce</label>
-            <textarea
-              placeholder="1. Run /command
-2. Bot errors
-3. Happens every time"
-              required
-            ></textarea>
-
-            <button type="submit">Submit Bug Report</button>
-          </form>
+          <div class="priority-option med">
+            <input type="radio" name="priority" id="p-med" value="Medium" checked/>
+            <label for="p-med"><span class="p-icon">🟡</span>Medium</label>
+          </div>
+          <div class="priority-option high">
+            <input type="radio" name="priority" id="p-high" value="High"/>
+            <label for="p-high"><span class="p-icon">🔴</span>High</label>
+          </div>
         </div>
       </div>
 
-      <footer>© 2026 Akchansh gairola • Bug Reporting Portal</footer>
+      <hr class="divider"/>
+
+      <div class="form-group">
+        <label for="description">Bug Description <span class="req">*</span></label>
+        <textarea id="description" placeholder="What happened? What did you expect vs what actually occurred?"></textarea>
+        <div class="error-msg" id="description-error">Please describe the bug (at least 20 characters).</div>
+      </div>
+
+      <div class="form-group" style="margin-bottom: 8px;">
+        <label for="steps">Steps to Reproduce</label>
+        <textarea id="steps" style="min-height: 80px;" placeholder="1. Used /command&#10;2. Bot responded with...&#10;3. Expected X but got Y"></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn">
+        <div class="spinner"></div>
+        <span class="btn-text">Submit Bug Report</span>
+      </button>
+    </form>
+
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24"><path class="check-path" d="M4 13l5 5L20 7"/></svg>
+      </div>
+      <h2>Report Submitted!</h2>
+      <p>Thanks for the report. We'll look into it and get back to you if needed.</p>
+      <div class="success-summary">
+        <div class="summary-row"><span>Submitted by</span><span id="s-user">—</span></div>
+        <div class="summary-row"><span>Category</span><span id="s-cat">—</span></div>
+        <div class="summary-row"><span>Priority</span><span id="s-pri">—</span></div>
+        <div class="summary-row"><span>Submitted at</span><span id="s-time">—</span></div>
+      </div>
+      <button class="reset-btn" id="resetBtn">Submit another report</button>
     </div>
-    <script>
-      document
-        .getElementById("bugForm")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          window.location.href = "reported.html";
-        });
-    </script>
-  </body>
+  </div>
+
+  <div class="footer">© 2026 Akchansh Gairola · Bug Reporting Portal</div>
+<script src="script.js"></script>
+
+</body>
 </html>
+
