@@ -1,7 +1,8 @@
 // ── Config ────────────────────────────────────────────────────────────────────
 const SUPABASE_URL     = 'https://jsvgschahauhaghimxru.supabase.co';
 const SUPABASE_KEY     = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpzdmdzY2hhaGF1aGFnaGlteHJ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgzOTExNTIsImV4cCI6MjA5Mzk2NzE1Mn0.ullYQgYarYfnHp_ByETjNZ0BIkI15kxn5DZ9U0-qyjs';
-const DISCORD_WEBHOOK  = 'https://discordapp.com/api/webhooks/1502935423150723183/Ri6dKg-JgjjCBcewx7Z0bXaqTGKW0ITlR_u1zhECip6cv-8dFeby8isZuDxm3qjYMgSd';
+const BOT_URL       = 'https://bug-report-bot-yfjs.onrender.com';
+const API_SECRET    = 'bugbot123';
 
 const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -94,11 +95,20 @@ form.addEventListener('submit', async e => {
       }],
     };
 
-    fetch(DISCORD_WEBHOOK, {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify(embed),
-    }).catch(() => {/* Don't block UI if Discord fails */});
+  fetch(`${BOT_URL}/report`, {
+  method:  'POST',
+  headers: {
+    'Content-Type':  'application/json',
+    'x-api-secret':  API_SECRET,
+  },
+  body: JSON.stringify({
+    discord_username: user,
+    category:         cat,
+    priority:         pri,
+    description:      desc,
+    steps:            steps || null,
+  }),
+}).catch(() => {});
 
     // 3. Show success screen ───────────────────────────────────────────────────
     const now  = new Date();
